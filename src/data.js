@@ -30,6 +30,17 @@ export const skills = {
   Technologies: ['Git', 'Linux', 'Docker', 'Kubernetes', 'AWS', 'Terraform', 'Datadog', 'Jenkins', 'Kafka'],
 };
 
+export const hobbies = [
+  { icon: '🏀', name: 'Basketball', detail: 'Youth basketball coach' },
+  { image: 'hobbies/sudoku.png', imageBg: '#fff', name: 'Sudoku', detail: 'Competitive player' },
+  { image: 'hobbies/catan.png', name: 'Catan', detail: 'Player' },
+];
+
+// Wikimedia Commons: Sudoku grid by Tim Stellmach (CC0);
+// Catan board by Cmglee (CC BY-SA 4.0) — attribution required, rendered under the hobbies card.
+export const imageCredits =
+  'Catan board illustration by Cmglee, CC BY-SA 4.0, via Wikimedia Commons.';
+
 export const projects = [
   {
     name: 'Member Risk Platform',

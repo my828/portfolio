@@ -120,3 +120,12 @@ p { margin: 4px 0 0; }
 .capstone > div:first-child { flex: 1 1 380px; display: flex; flex-direction: column; gap: 10px; }
 .capstone-desc { max-width: 560px; margin: 0; }
 .capstone-role { margin: 0; font-size: 14px; }
+
+/* Hobbies */
+.hobbies { margin-top: 20px; }
+.hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.hobby { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; }
+.hobby-icon { display: grid; place-items: center; flex-shrink: 0; width: 56px; height: 56px; border-radius: 8px; background: var(--bg); font-size: 28px; }
+.hobby-img { object-fit: contain; padding: 4px; }
+.credits { margin-top: 14px; font-size: 11px; color: var(--muted); opacity: .7; }
+.hobby p { margin: 0; font-size: 14px; }

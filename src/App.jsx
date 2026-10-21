@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { profile, experience, education, skills, projects, capstone } from './data.js';
+import { profile, experience, education, skills, projects, capstone, hobbies, imageCredits } from './data.js';
 
 const TABS = [
   { id: 'about', label: 'About' },
@@ -101,6 +101,31 @@ function About() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="card hobbies">
+        <h2>Outside of Work</h2>
+        <div className="hobby-grid">
+          {hobbies.map((h) => (
+            <div key={h.name} className="hobby">
+              {h.image ? (
+                <img
+                  className="hobby-icon hobby-img"
+                  src={h.image}
+                  alt=""
+                  style={h.imageBg ? { background: h.imageBg } : undefined}
+                />
+              ) : (
+                <span className="hobby-icon" aria-hidden="true">{h.icon}</span>
+              )}
+              <div>
+                <strong>{h.name}</strong>
+                <p className="muted">{h.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="credits">{imageCredits}</p>
       </section>
     </>
   );
