@@ -26,7 +26,7 @@ export const education = {
 export const skills = {
   Languages: ['Java', 'Python', 'JavaScript', 'TypeScript', 'SQL', 'Go', 'Kotlin'],
   'Frameworks & APIs': ['Spring Boot', 'React', 'Node.js', 'GraphQL'],
-  Databases: ['PostgreSQL', 'CockroachDB', 'Elasticsearch', 'Redis'],
+  Databases: ['PostgreSQL', 'Redis'],
   Technologies: ['Git', 'Linux', 'Docker', 'Kubernetes', 'AWS', 'Terraform', 'Datadog', 'Jenkins', 'Kafka'],
 };
 
