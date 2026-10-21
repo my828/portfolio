@@ -116,6 +116,11 @@ function Projects() {
         <div>
           <p className="eyebrow">{capstone.label}</p>
           <h2 className="capstone-name">{capstone.name}</h2>
+          <p className="muted capstone-desc">{capstone.description}</p>
+          <p className="capstone-role"><span className="muted">Role:</span> {capstone.role}</p>
+          <div className="chips">
+            {capstone.stack.map((s) => <span key={s} className="chip">{s}</span>)}
+          </div>
           <span className="link-hint">View project ↗</span>
         </div>
         <div className="award">

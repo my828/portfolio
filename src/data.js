@@ -88,7 +88,11 @@ export const projects = [
 
 export const capstone = {
   name: 'ShareSpace',
-  label: 'Capstone Project',
+  label: 'University of Washington · Capstone Project',
+  description:
+    'A housing platform that connects domestic violence survivors with short-term stays from community hosts, coordinated through local nonprofit advocates. Includes an advocate dashboard with a real-time calendar of host availability and bookings.',
+  role: 'Full Stack Developer',
+  stack: ['React', 'Firebase', 'Material UI'],
   award: 'Service Award',
   awardDetail: 'Won out of 150+ projects',
   url: 'https://my828.github.io/sharespace/',
