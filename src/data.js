@@ -85,3 +85,11 @@ export const projects = [
     stack: ['React', 'Ember.js'],
   },
 ];
+
+export const capstone = {
+  name: 'ShareSpace',
+  label: 'Capstone Project',
+  award: 'Service Award',
+  awardDetail: 'Won out of 150+ projects',
+  url: 'https://my828.github.io/sharespace/',
+};
