@@ -13,9 +13,7 @@
 
 body {
   margin: 0;
-  background:
-    radial-gradient(1000px 500px at 10% -10%, rgba(124, 156, 255, 0.12), transparent 60%),
-    var(--bg);
+  background: var(--bg);
   color: var(--text);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
@@ -38,7 +36,7 @@ a { color: inherit; text-decoration: none; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; }
 .brand-mark {
   display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background: var(--accent);
   color: #0b0d12; font-size: 13px; font-weight: 700;
 }
 .tabs { display: flex; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
@@ -55,8 +53,8 @@ h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; margin: 12px 0 16px
 .page-title { margin-top: 0; }
 h2 { font-size: 1.05rem; margin: 0 0 14px; }
 h3 { font-size: .8rem; color: var(--muted); font-weight: 500; margin: 0 0 8px; text-transform: uppercase; letter-spacing: .06em; }
-.accent { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.lede { color: var(--muted); font-size: 1.08rem; max-width: 640px; margin: 0 0 28px; }
+.accent { color: var(--accent); }
+.lede { color: var(--muted); max-width: 640px; margin: 0 0 28px; }
 .muted { color: var(--muted); }
 .mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
 .spaced { margin-top: 28px; }
@@ -106,12 +104,12 @@ p { margin: 4px 0 0; }
 }
 
 /* Capstone */
-.section-label { margin: 36px 0 14px; font-size: .8rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: .08em; }
+.section-label { margin: 36px 0 14px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: .08em; }
 .page-title + .section-label { margin-top: 8px; }
 .capstone {
   display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
   border-color: rgba(94, 234, 212, 0.35);
-  background: linear-gradient(135deg, rgba(124, 156, 255, 0.10), rgba(94, 234, 212, 0.06)), var(--surface);
+  background: var(--surface);
   transition: border-color .2s, transform .2s;
 }
 .capstone:hover { border-color: var(--accent-2); transform: translateY(-2px); }

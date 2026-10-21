@@ -111,26 +111,8 @@ function Projects() {
     <section>
       <h1 className="page-title">Projects</h1>
 
-      <h2 className="section-label">Capstone</h2>
-      <a className="card capstone" href={capstone.url} target="_blank" rel="noreferrer">
-        <div>
-          <p className="eyebrow">{capstone.label}</p>
-          <h2 className="capstone-name">{capstone.name}</h2>
-          <p className="muted capstone-desc">{capstone.description}</p>
-          <p className="capstone-role"><span className="muted">Role:</span> {capstone.role}</p>
-          <div className="chips">
-            {capstone.stack.map((s) => <span key={s} className="chip">{s}</span>)}
-          </div>
-          <span className="link-hint">View project ↗</span>
-        </div>
-        <div className="award">
-          <span className="award-badge">🏆 {capstone.award}</span>
-          <span className="muted">{capstone.awardDetail}</span>
-        </div>
-      </a>
-
       <h2 className="section-label">Professional Work</h2>
-      <p className="lede">Selected work from fintech platforms at SoFi and Better.com.</p>
+      {/* <p className="lede">Selected work from fintech platforms at SoFi and Better.com.</p> */}
       <div className="project-grid">
         {projects.map((p) => (
           <article key={p.name} className="card project">
@@ -142,11 +124,44 @@ function Projects() {
             </div>
             <p className="muted">{p.description}</p>
             <div className="chips">
-              {p.stack.map((s) => <span key={s} className="chip">{s}</span>)}
+              {p.stack.map((s) => (
+                <span key={s} className="chip">
+                  {s}
+                </span>
+              ))}
             </div>
           </article>
         ))}
       </div>
+
+      <h2 className="section-label">Capstone</h2>
+      <a
+        className="card capstone"
+        href={capstone.url}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <div>
+          <p className="eyebrow">{capstone.label}</p>
+          <h2 className="capstone-name">{capstone.name}</h2>
+          <p className="muted capstone-desc">{capstone.description}</p>
+          <p className="capstone-role">
+            <span className="muted">Role:</span> {capstone.role}
+          </p>
+          <div className="chips">
+            {capstone.stack.map((s) => (
+              <span key={s} className="chip">
+                {s}
+              </span>
+            ))}
+          </div>
+          <span className="link-hint">View project ↗</span>
+        </div>
+        <div className="award">
+          <span className="award-badge">🏆 {capstone.award}</span>
+          <span className="muted">{capstone.awardDetail}</span>
+        </div>
+      </a>
     </section>
   );
 }
