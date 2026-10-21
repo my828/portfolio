@@ -4,8 +4,8 @@
   --border: #263252;
   --text: #F1F5F9;
   --muted: #8B9BB4;
-  --accent: #F5A524;
-  --accent-2: #F5A524;
+  --accent: #FF7A59;
+  --accent-2: #FF7A59;
   color-scheme: dark;
 }
 
@@ -76,12 +76,12 @@ p { margin: 4px 0 0; }
 
 .skill-group + .skill-group { margin-top: 18px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { padding: 3px 10px; border-radius: 999px; background: rgba(245, 165, 36, 0.08); border: 1px solid rgba(245, 165, 36, 0.25); color: #F8C76A; font-size: 12.5px; }
+.chip { padding: 3px 10px; border-radius: 999px; background: rgba(255, 122, 89, 0.08); border: 1px solid rgba(255, 122, 89, 0.25); color: #FFAD99; font-size: 12.5px; }
 
 /* Projects */
 .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
 .project { display: flex; flex-direction: column; gap: 12px; transition: border-color .2s, transform .2s; }
-.project:hover { border-color: rgba(245, 165, 36, 0.5); transform: translateY(-2px); }
+.project:hover { border-color: rgba(255, 122, 89, 0.5); transform: translateY(-2px); }
 .project h2 { margin: 0; }
 .project .chips { margin-top: auto; }
 .metric { display: flex; align-items: baseline; gap: 8px; }
@@ -108,7 +108,7 @@ p { margin: 4px 0 0; }
 .page-title + .section-label { margin-top: 8px; }
 .capstone {
   display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
-  border-color: rgba(245, 165, 36, 0.4);
+  border-color: rgba(255, 122, 89, 0.4);
   background: var(--surface);
   transition: border-color .2s, transform .2s;
 }
@@ -116,7 +116,7 @@ p { margin: 4px 0 0; }
 .capstone-name { font-size: 1.6rem; margin: 6px 0 4px; }
 .link-hint { color: var(--accent); font-size: 14px; font-weight: 500; }
 .award { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-.award-badge { padding: 6px 12px; border-radius: 999px; background: rgba(245, 165, 36, 0.12); border: 1px solid rgba(245, 165, 36, 0.4); color: var(--accent-2); font-weight: 600; font-size: 14px; }
+.award-badge { padding: 6px 12px; border-radius: 999px; background: rgba(255, 122, 89, 0.12); border: 1px solid rgba(255, 122, 89, 0.4); color: var(--accent-2); font-weight: 600; font-size: 14px; }
 .capstone > div:first-child { flex: 1 1 380px; display: flex; flex-direction: column; gap: 10px; }
 .capstone-desc { max-width: 560px; margin: 0; }
 .capstone-role { margin: 0; font-size: 14px; }
