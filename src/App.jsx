@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { profile, experience, education, skills, projects, capstone, hobbies, imageCredits } from './data.js';
+import { profile, experience, education, skills, projects, capstone, hobbies } from './data.js';
 
 const TABS = [
   { id: 'about', label: 'About' },
@@ -133,7 +133,6 @@ function About() {
             </div>
           ))}
         </div>
-        <p className="credits">{imageCredits}</p>
       </section>
     </>
   );
