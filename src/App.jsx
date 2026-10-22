@@ -7,16 +7,24 @@ const TABS = [
   { id: 'contact', label: 'Contact' },
 ];
 
-function tabFromHash() {
-  const id = window.location.hash.replace('#', '');
-  return TABS.some((t) => t.id === id) ? id : 'about';
+const allProjects = [...projects, capstone];
+
+// Hash routes: #about, #projects, #projects/<slug>, #contact
+function routeFromHash() {
+  const [id, slug] = window.location.hash.replace('#', '').split('/');
+  const tab = TABS.some((t) => t.id === id) ? id : 'about';
+  const project = tab === 'projects' && slug ? allProjects.find((p) => p.slug === slug) : null;
+  return { tab, project };
 }
 
 export default function App() {
-  const [tab, setTab] = useState(tabFromHash);
+  const [{ tab, project }, setRoute] = useState(routeFromHash);
 
   useEffect(() => {
-    const onHash = () => setTab(tabFromHash());
+    const onHash = () => {
+      setRoute(routeFromHash());
+      window.scrollTo(0, 0);
+    };
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
@@ -43,9 +51,9 @@ export default function App() {
         </nav>
       </header>
 
-      <main key={tab} className="panel">
+      <main key={project ? project.slug : tab} className="panel">
         {tab === 'about' && <About />}
-        {tab === 'projects' && <Projects />}
+        {tab === 'projects' && (project ? <ProjectDetail project={project} /> : <Projects />)}
         {tab === 'contact' && <Contact />}
       </main>
 
@@ -139,14 +147,22 @@ function Projects() {
       <h2 className="section-label">Professional Work</h2>
       {/* <p className="lede">Selected work from fintech platforms at SoFi and Better.com.</p> */}
       <div className="project-grid">
-        {projects.map((p) => (
-          <article key={p.name} className="card project">
+        {projects.map((p) => {
+          const Card = p.slug ? 'a' : 'article';
+          return (
+          <Card
+            key={p.name}
+            href={p.slug ? `#projects/${p.slug}` : undefined}
+            className={`card project ${p.slug ? 'clickable' : ''}`}
+          >
             <p className="eyebrow">{p.org}</p>
             <h2>{p.name}</h2>
-            <div className="metric">
-              <span className="metric-value">{p.metric}</span>
-              <span className="muted">{p.metricLabel}</span>
-            </div>
+            {p.metric && (
+              <div className="metric">
+                <span className="metric-value">{p.metric}</span>
+                <span className="muted">{p.metricLabel}</span>
+              </div>
+            )}
             <p className="muted">{p.description}</p>
             <div className="chips">
               {p.stack.map((s) => (
@@ -155,17 +171,14 @@ function Projects() {
                 </span>
               ))}
             </div>
-          </article>
-        ))}
+            {p.slug && <span className="link-hint">Read more →</span>}
+          </Card>
+          );
+        })}
       </div>
 
       <h2 className="section-label">Capstone</h2>
-      <a
-        className="card capstone"
-        href={capstone.url}
-        target="_blank"
-        rel="noreferrer"
-      >
+      <a className="card capstone" href={`#projects/${capstone.slug}`}>
         <div>
           <p className="eyebrow">{capstone.label}</p>
           <h2 className="capstone-name">{capstone.name}</h2>
@@ -180,7 +193,7 @@ function Projects() {
               </span>
             ))}
           </div>
-          <span className="link-hint">View project ↗</span>
+          <span className="link-hint">Read more →</span>
         </div>
         <div className="award">
           <span className="award-badge">🏆 {capstone.award}</span>
@@ -188,6 +201,111 @@ function Projects() {
         </div>
       </a>
     </section>
+  );
+}
+
+// Matches metrics like −40%, +50%, $100M+, 10K+, 2×, ~$4, ~2 months, 2–3 years, 130+.
+const NUMBER_RE = /([~+−$]*\d[\d,.]*(?:[–-]\d+)?[KMB]?[%×+]*(?:\s(?:months?|weeks?|minutes?|years?|products))?)/g;
+
+function highlightNumbers(text) {
+  return text.split(NUMBER_RE).map((part, i) =>
+    i % 2 ? <span key={i} className="num">{part}</span> : part
+  );
+}
+
+// Sections with no content are hidden in production; in dev they show a
+// placeholder so missing details are easy to spot.
+function DetailSection({ title, filled, children }) {
+  if (!filled && !import.meta.env.DEV) return null;
+  return (
+    <section className="detail-section">
+      <h2 className="section-label">{title}</h2>
+      {filled ? children : <p className="draft-note">Draft: not filled in yet. Hidden on the live site.</p>}
+    </section>
+  );
+}
+
+function ProjectDetail({ project: p }) {
+  return (
+    <article className="detail">
+      <a href="#projects" className="back-link">← All projects</a>
+
+      <header className="detail-header">
+        <p className="eyebrow">{p.label || p.org}</p>
+        <h1 className="page-title">{p.name}</h1>
+        {p.metric && (
+          <div className="metric">
+            <span className="metric-value">{p.metric}</span>
+            <span className="muted">{p.metricLabel}</span>
+          </div>
+        )}
+        {p.award && (
+          <div className="award">
+            <span className="award-badge">🏆 {p.award}</span>
+            <span className="muted">{p.awardDetail}</span>
+          </div>
+        )}
+        <div className="chips">
+          {p.stack.map((s) => <span key={s} className="chip">{s}</span>)}
+        </div>
+        {p.url && (
+          <div>
+            <a className="btn primary" href={p.url} target="_blank" rel="noreferrer">
+              Visit live site ↗
+            </a>
+          </div>
+        )}
+      </header>
+
+      <DetailSection title="The Problem" filled={!!p.problem}>
+        <p className="detail-text">{p.problem}</p>
+        {p.role && <p className="detail-role"><span className="muted">My role:</span> {p.role}</p>}
+      </DetailSection>
+
+      {p.solution && (
+        <DetailSection title="The Solution" filled>
+          <p className="detail-text">{p.solution}</p>
+        </DetailSection>
+      )}
+
+      <DetailSection title="Architecture" filled={p.architecture?.length > 0}>
+        <ol className="arch-flow">
+          {p.architecture?.map((node) => (
+            <li key={node.label} className="arch-node">
+              <strong>{node.label}</strong>
+              <span className="muted">{node.detail}</span>
+            </li>
+          ))}
+        </ol>
+      </DetailSection>
+
+      <DetailSection title="Technical Challenges" filled={p.challenges?.length > 0}>
+        <ul className="detail-list">
+          {p.challenges?.map((c) => {
+            const i = c.indexOf(': ');
+            return (
+              <li key={c}>
+                {i > 0 ? <><strong>{c.slice(0, i)}:</strong> {c.slice(i + 2)}</> : c}
+              </li>
+            );
+          })}
+        </ul>
+      </DetailSection>
+
+      <DetailSection title="Impact" filled={p.impact?.length > 0}>
+        <ul className="impact-list">
+          {p.impact?.map((i) => <li key={i} className="card">{highlightNumbers(i)}</li>)}
+        </ul>
+      </DetailSection>
+
+      {p.lesson && (
+        <DetailSection title="Lesson Learned" filled>
+          <blockquote className="lesson">{p.lesson}</blockquote>
+        </DetailSection>
+      )}
+
+      <a href="#projects" className="back-link bottom">← All projects</a>
+    </article>
   );
 }
 
